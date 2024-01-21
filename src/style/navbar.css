@@ -1,0 +1,62 @@
+.navbarComponent {
+    gap: 50px;
+    width: 95%;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.navbarComponent div {
+    width: 90%;
+}
+
+.navbarComponent .great  {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+}
+
+.navbarComponent .great div {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.navbarComponent .great div button {
+    display: flex;
+    cursor: pointer;
+    padding: 3.5px 5px;
+    border-radius: 3px;
+    align-items: center;
+    border: 1.5px solid #d2d2d2;
+    background-color: rgb(222, 240, 240);
+}
+
+.navbarComponent .search {
+    height: 100px;
+    display: flex;
+    padding: 30px;
+    border-radius: 5px;
+    align-items: center;
+    background-color: rgb(241, 221, 221);
+}
+
+.navbarComponent .search div:nth-child(1) {
+    gap: 20px;
+    width: 43%;
+    height: 100%;
+    display: grid;
+}
+
+.navbarComponent .search div:nth-child(2) {
+    display: flex;
+    justify-content: end;
+}
+
+.navbarComponent .search img {
+    width: 260px;
+    margin-top: -30px;
+}

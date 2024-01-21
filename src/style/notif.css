@@ -1,0 +1,61 @@
+.notifComponent {
+    gap: 5px;
+    display: flex;
+    padding-left: 5%;
+    padding-right: 10%;
+    flex-direction: column;
+}
+
+.notif-contain {
+    height: 81vh;
+    overflow-y: scroll;
+}
+
+.notifComponent .isi-notif {
+    gap: 10px;
+    padding: 5px;
+    display: flex;
+    border-radius: 5px;
+    height: max-content;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    background-color: aliceblue;
+}
+
+.notifComponent .new {
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 10px;
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    background-color: red;
+}
+
+.notifComponent .detail .isi-notif {
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+}
+
+.notifComponent .detail .isi-notif .isi {
+    gap: 10px;
+    display: grid;
+}
+
+.notifComponent .detail .isi strong {
+    top: 4px;
+    right: 0;
+    position: absolute;
+}
+
+.notifComponent .filter {
+    gap: 10%;
+    display: flex;
+}
+
+.notifComponent .filter input {
+    padding-left: 10px;
+}

@@ -1,0 +1,175 @@
+.postsComponent {
+    gap: 10px;
+    width: 100%;
+    display: grid;
+    height: 55vh;
+    overflow-y: scroll;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+}
+
+.voteCard {
+    gap: 20px;
+    min-width: 25%;
+    padding: 10px;
+    display: flex;
+    cursor: pointer;
+    border-radius: 7px;
+    height: max-content;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.voteCard .prof {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.voteCard .prof div {
+    gap: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.voteCard .prof div button:nth-child(1) {
+    gap: 5px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    justify-content: center;
+    border: 1px solid #eaeaea;
+}
+
+.voteCard .prof .option {
+    position: relative;
+}
+
+.voteCard .prof .arrow {
+    height: 17px;
+    cursor: pointer;
+}
+
+.voteCard .prof .arrow:hover {
+    color: orange;
+}
+
+.voteCard .question {
+    width: 90%;
+}
+
+.voteCard .question .quest {
+    padding: 5px;
+    border-radius: 2px;
+    background-color: #d0d0d0;
+    color: rgb(49, 49, 49);
+}
+
+.voteCard .ansContain {
+    gap: 10px;
+    width: 100%;
+    height: 170px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.voteCard .ansContain .ans {
+    display: grid;
+    height: 100%;
+}
+
+.voteCard .ansContain button {
+    display: flex;
+    border: none;
+    border-radius: 2px;
+    width: max-content;
+    align-items: center;
+    height: max-content;
+}
+
+.voteCard .ansContain .ans button * {
+    cursor: pointer;
+}
+
+.voteCard .ansContain .count {
+    gap: 2px;
+    height: 100%;
+    display: flex;
+    width: min-content;
+    align-items: center;
+    flex-direction: column;
+}
+
+.voteCard .ansContain .count p:nth-child(1) {
+    width: min-content;
+}
+
+
+.voteCard .ansContain .count .tot {
+    display: flex;
+    width: max-content;
+}
+
+.voteCard .ansContain .count .persen {
+    display: flex;
+    width: 40px;
+    height: 85%;
+    border-radius: 2px;
+    justify-content: end;
+    flex-direction: column;
+    background-color: #c6c6c6;
+}
+
+.voteCard .ansContain .count .persen .progres {
+    height: 0%;
+    background-color: green;
+}
+
+.voteCard .response {
+    gap: 3px;
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.voteCard .response small {
+    color: rgb(32, 32, 255);
+    font-style: italic;
+}
+
+.voteCard .response small:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.voteCard .response div button {
+    top: 0;
+    border: 1px solid #b6b6b6;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.voteCard .response div button:nth-child(1) {
+   right: 8%; 
+}
+
+.voteCard .response div button:nth-child(2) {
+    right: 6%;
+}
+
+.voteCard .response div button:nth-child(3) {
+    right: 4%;
+}
+
+.voteCard .response div button:nth-child(4) {
+    right: 2%;
+}
+
+.voteCard .response div button:nth-child(5) {
+    right: 0%;
+}

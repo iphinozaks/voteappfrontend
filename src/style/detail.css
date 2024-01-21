@@ -1,0 +1,96 @@
+.celected {
+    color: #fff;
+    background-color: green;
+}
+
+.detailComponent {
+    gap: 10px;
+    display: grid;
+}
+
+.detailComponent .vote  {
+    grid-area: vote;
+}
+
+.detailComponent .detail {
+    grid-area: detail;
+}
+
+.detailComponent .vote {
+    gap: 3px;
+    width: 100%;
+    display: grid;
+}
+
+.detailComponent .vote button {
+    gap: 5px;
+    display: flex;
+    padding: 5px;
+    width: 50%;
+}
+
+.detailComponent .vote button:hover {
+    color: white;
+    cursor: pointer;
+    background-color: green;
+}
+
+.detailComponent .submit {
+    gap: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.detailComponent .submit button {
+    gap: 3px;
+    width: 40%;
+    height: 45px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detailComponent .submit input {
+    width: 100%;
+    outline: none;
+    padding-left: 5px;
+}
+
+.detailComponent .submit button:nth-child(1) {
+    width: max-content;
+}
+
+.detailComponent .submit button:hover {
+    color: #fff;
+    cursor: pointer;
+    background-color: green;
+}
+
+.detailComponent .responseComment {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.detailComponent .responseComment .comments {
+    gap: 5px;
+    display: grid;
+    padding: 5px;
+    max-height: 25vh;
+    overflow-y: scroll;
+    background-color: aliceblue;
+}
+
+.detailComponent .responseComment .comments .coms {
+    gap: 3px;
+    display: grid;
+    width: max-content;
+}
+
+.detailComponent .responseComment .comments .coms .headCom {
+    gap: 5px;
+    display: flex;
+    align-items: center;
+}

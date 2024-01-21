@@ -1,0 +1,26 @@
+.optionComponent {
+    top: 20px;
+    right: 0%;
+    color: #000;
+    height: max-content;
+    position: absolute;
+    border-radius: 2px;
+    background-color: #eaeaea;
+}
+
+.optionComponent ul {
+    width: 150px;
+}
+
+.optionComponent li {
+    display: flex;
+    padding-top: 3px;
+    padding-left: 5px;
+    list-style: none;
+    justify-content: start;
+}
+
+.optionComponent li:hover {
+    color: #fff;
+    background-color: orange;
+}

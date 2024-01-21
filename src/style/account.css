@@ -1,0 +1,62 @@
+.accountContainer {
+    height: 75vh;
+    padding: 9% 20%;
+    background-color: #f2f2f2;
+}
+
+.main {
+    height: 100%;
+    padding: 0;
+    display: grid;
+    overflow: hidden;
+    border-radius: 7px;
+    box-shadow: 2px 2px 8px 2px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.masuk {
+    padding: 10%;
+    background-color: #fff;  
+}
+
+.daftar {
+    padding: 5% 10%;
+    background-color: #fff;  
+}
+
+.about {
+    gap: 10%;
+    padding: 5%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(175, 58, 28);
+}
+
+.about button {
+    display: flex;
+    padding: 10px;
+    cursor: pointer;
+    width: max-content;
+    align-items: center;
+    border-radius: 50px;
+}
+
+
+@media (max-width: 769px) {
+    .accountContainer {
+        padding: 1.5%;
+        height: 100vh;
+    }
+    .main {
+        overflow-y: scroll;
+        grid-template-columns: 1fr;
+    }
+    .about {
+        padding: 10% 0;
+        font-size: 90%;
+    }
+}

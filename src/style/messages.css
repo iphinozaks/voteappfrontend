@@ -1,0 +1,33 @@
+.messagesComponent {
+    display: grid;
+    grid-template-columns: 0.22fr 1fr .3fr;
+    grid-template-areas: 'left-bar navbar-posts right-bar'
+                         'left-bar navbar-posts right-bar';
+}
+
+.left-bar {
+    grid-area: left-bar;
+}
+
+.navbar-posts {
+    padding-bottom: 10px;
+    grid-area: navbar-posts;
+    background-color: rgb(237, 237, 237);
+}
+
+.right-bar {
+    grid-area: right-bar;
+}
+
+@media (max-width: 769px) {
+    .navbar-posts {
+        width: 100%;
+        height: 100vh;
+    }
+    .navbar-posts .messageComponent {
+        grid-template-columns: 1fr;
+    }
+    .navbar-posts .messageComponent .chat-active {
+        display: none;
+    }
+}

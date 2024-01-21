@@ -1,0 +1,75 @@
+.dashboardComponent {
+    display: grid;
+    grid-template-columns: 0.22fr 1fr .3fr;
+    grid-template-areas: 'left-bar navbar-posts right-bar'
+                         'left-bar navbar-posts right-bar';
+}
+
+.left-bar {
+    grid-area: left-bar;
+}
+
+.navbar-posts {
+    padding: 10px;
+    grid-area: navbar-posts;
+    background-color: rgb(237, 237, 237);
+}
+
+.right-bar {
+    grid-area: right-bar;
+}
+
+@media (max-width: 769px) {
+    .navbar-posts {
+        height: 100vh;
+    }
+    .dashboardComponent {
+        overflow-x: visible;
+        grid-template-columns: 65px 1fr;
+    }
+    .left-bar .leftbarComponent .brend h1 {
+        font-size: 95%;
+        margin-top: 10px;
+    }
+    .left-bar .leftbarComponent {
+        gap: 20px;
+        padding-top: 5px;
+    }
+    .left-bar .leftbarComponent .option div {
+        padding: 8px 20% 8px 20%;
+    }
+    .left-bar .leftbarComponent .option div p {
+        display: none;
+    }
+    .left-bar .leftbarComponent .logout small {
+        display: none;
+    }
+    .left-bar .leftbarComponent button {
+        padding: 4px 17px 5px 17px;
+        width: max-content;
+    }
+    .navbar-posts {
+        width: 310px;
+        padding: 5px;
+        font-size: 70%;
+    }
+    .navbar-posts .navbarComponent {
+        gap: 20px;
+        padding: 10px;
+    }
+    .navbar-posts .navbarComponent .search {
+        width: 250px;
+        overflow: scroll;
+    }
+    .navbar-posts .navbarComponent .search img {
+        width: 150px;
+        margin-top: 0;
+    }
+    .navbar-posts .postsComponent {
+        font-size: 90%;
+        grid-template-columns: 1fr;
+    }
+    .right-bar {
+        display: none;
+    }
+}

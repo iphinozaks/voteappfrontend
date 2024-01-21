@@ -1,0 +1,99 @@
+.rightbarComponent {
+    gap: 30px;
+    width: 100%;
+    display: grid;
+    padding-top: 20px;
+}
+
+.rightbarComponent .top-topic {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.rightbarComponent .list-topic {
+    gap: 5px;
+    width: 100%;
+    height: 52vh;
+    display: flex;
+    padding-top: 5px;
+    overflow-y: scroll;
+    flex-direction: column;
+}
+
+.rightbarComponent .topic {
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: #eaeaea;
+}
+
+.rightbarComponent .top-topic .head-topic {
+    gap: 5px;
+    display: flex;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #eaeaea;
+}
+
+.rightbarComponent .topic .answer {
+    gap: 10px;
+    display: flex;
+}
+
+.rightbarComponent .topic small span {
+    cursor: pointer;
+    color: rgb(32, 32, 255);
+    text-decoration: underline;
+}
+
+.rightbarComponent .msg {
+    gap: 20px;
+    display: grid;
+    padding-right: 10px;
+    padding-left: 20px;
+}
+
+.rightbarComponent .msg .head-msg {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rightbarComponent .msg .notif {
+    gap: 25px;
+    display: grid;
+    max-height: 210px;
+    overflow-y: scroll;
+}
+
+.rightbarComponent .msg .isi-notif {
+    gap: 30px;
+    display: flex;
+    height: max-content;
+    align-items: center;
+    position: relative;
+    justify-content: space-between;
+}
+
+.rightbarComponent .msg .head-msg .con {
+    padding-right: 8px;
+    position: relative;
+}
+
+.rightbarComponent .msg .new {
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 8px;
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    background-color: red;
+}
+
+.rightbarComponent .msg .isi-notif:hover {
+    cursor: pointer;
+    background-color: #eaeaea;
+}
+
+.rightbarComponent .msg .isi-notif .isi {
+    display: grid;
+} 

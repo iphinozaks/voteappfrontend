@@ -1,0 +1,171 @@
+.messageComponent {
+    gap: 5px;
+    display: grid;
+    grid-template-columns: .5fr 1fr;
+}
+
+.messageComponent .daftar-chat {
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.messageComponent .chat-active {
+    padding-left: 20px;
+}
+
+.messageComponent .daftar-chat .head {
+    gap: 10px;
+    display: grid;
+}
+
+.messageComponent .daftar-chat .daftar {
+    padding: 0;
+    width: 100%;
+    background-color: inherit;
+}
+
+.messageComponent .daftar-chat .daftar .isi {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.messageComponent .daftar-chat .daftar .isi:hover {
+    background: #d1d1d1;
+}
+
+.messageComponent .daftar-chat .head input {
+    width: 250px;
+    height: 30px;
+    border-radius: 20px;
+    padding-left: 5px;
+}
+
+.messageComponent .daftar-chat .isi .head-user {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.messageComponent .daftar-chat .isi .head-user div {
+    gap: 8px;
+    display: grid;
+}
+
+.messageComponent .daftar-chat .isi .head-user button {
+    border-radius: 50%;
+}
+
+.messageComponent .chat-active {
+    padding: 3px;
+    background-color: #fff;
+}
+
+.messageComponent .chat-active .isi-chats {
+    display: grid;
+    grid-template-rows: max-content 81vh max-content;
+}
+
+.messageComponent .chat-active .head-active {
+    display: flex;
+    padding: 5px;
+    border-bottom: 2px solid #eaeaeaea;
+    justify-content: space-between;
+}
+
+.messageComponent .chat-active .head-active font {
+    padding: 0 5px;
+    height: max-content;
+}
+
+.messageComponent .chat-active .head-active font:hover {
+    color: #fff;
+    cursor: pointer;
+    background-color: red;
+}
+
+.messageComponent .chat-active .head-active div {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.messageComponent .chat-active .head-active div div {
+    display: grid;
+}
+
+.messageComponent .chat-active .kirim {
+    gap: 5px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    border-top: 2px solid #eaeaeaea;
+}
+
+.messageComponent .chat-active .kirim input {
+    width: 85%;
+    height: 40px;
+    padding-left: 5px;
+    border-radius: 15px;
+}
+
+.messageComponent .chat-active .kirim button {
+    width: 15%;
+    height: 39px;
+}
+
+.messageComponent .chat-active .chats {
+    gap: 5px;
+    padding: 5px;
+    display: flex;
+    overflow-y: scroll;
+    background-color: aliceblue;
+    flex-direction: column;
+}
+
+.messageComponent .chat-active .chats .kanan div,.messageComponent .chat-active .chats .kiri div {
+    gap: 10px;
+    display: flex;
+    width: max-content;
+}
+
+.messageComponent .chat-active .chats .kiri div p,.messageComponent .chat-active .chats .kanan div p {
+    padding: 5px;
+    background-color: #fff;
+}
+
+.messageComponent .chat-active .chats .kiri div button,.messageComponent .chat-active .chats .kanan div button {
+    border-radius: 50%;
+}
+
+.messageComponent .chat-active .chats .kanan {
+    display: flex;
+    justify-content: end;
+}
+
+.messageComponent .chat-active .chats .kanan button,.messageComponent .chat-active .chats .kiri button {
+    display: flex;
+    align-items: center;
+}
+
+.messageComponent .chat-active .chats .kanan div button {
+    display: none;
+}
+
+.messageComponent .chat-active .head-active button {
+    border-radius: 50%;
+}
+
+.messageComponent .chat-active .not-found {
+    display: flex;
+    width: 100%;
+    height: 95vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.messageComponent .chat-active .not-found * {
+    color: #989898;
+}

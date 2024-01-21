@@ -1,0 +1,55 @@
+.loginComponent {
+    gap: 15px;
+    display: grid;
+    text-align: center;
+}
+
+.loginForm .head {
+    gap: 15px;
+    display: grid;
+    margin-bottom: 10px;
+}
+
+.sosial {
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.sosial button {
+    display: flex;
+    padding: 3px;
+    cursor: pointer;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #eaeaea;
+}
+
+.loginForm .body {
+    gap: 10px;
+    display: flex;
+    margin-top: 5px;
+    flex-direction: column;
+}
+
+.loginForm .body input {
+    height: 40px;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+.loginForm .body button {
+    width: 50%;
+    height: 45px;
+    margin-left: 25%;
+    border-radius: 20px;
+}
+
+.loginForm .body button:hover {
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    border-radius: 20px;
+    background-color: green;
+}

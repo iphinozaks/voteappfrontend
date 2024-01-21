@@ -1,0 +1,39 @@
+.alert {
+    right: 1px;
+    top: 1px;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    justify-content: end;
+}
+.success,.err {
+    gap: 5px;
+    display: flex;
+    padding: 5px ;
+    color: #fff;
+    max-width: 260px;
+    flex-direction: column;
+    animation-name: insert;
+    animation-duration: 1.5s;
+}
+.success {
+    height: 12%;
+    border-radius: 3px;
+    background-color: green;
+}
+.err {
+    height: 12%;
+    border-radius: 3px;
+    background-color: red;
+}
+
+.success div ,.err div {
+    gap: 5px;
+    display: flex;
+    align-items: center;
+}
+
+@keyframes insert {
+    from {opacity : 0;}
+    to {opacity: 1;}
+}
