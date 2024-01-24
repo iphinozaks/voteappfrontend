@@ -10,6 +10,7 @@ import Settings from "./pages/Settings";
 import Messages from "./pages/Messages";
 import Dashboard from "./pages/Dasboard";
 import { useEffect, useState } from "react";
+import { Cridential } from "../utils/dotenv";
 import PrivateRoutes from "./utils/ProtectRoutes";
 import ValidateRoutes from "./utils/ValidateRoutes";
 import {BrowserRouter as Router,Routes,Route,Navigate} from "react-router-dom";
@@ -29,7 +30,7 @@ const App = () => {
 
   useEffect(() => {
     async function getCount () {
-      let count = await axios.post("http://localhost:8000/api/get_user_count")
+      let count = await axios.post(`${Cridential.BASE_URL}/api/get_user_count`)
       setUserCount(count.data.count);
     }
     if(active == "addQuestion") setPages("Buat Vote")
@@ -45,7 +46,7 @@ const App = () => {
   const logOut = async () => {
       let token = Cookies.get("auth_token")
       if (token) {
-        let logout = await axios.post("http://localhost:8000/api/logout",{token: token});
+        let logout = await axios.post(`${Cridential.BASE_URL}/api/logout`,{token: token});
         if (logout.data.code == 200 && logout.data.status == "OK") {
           setPages("")
           setUser(null)

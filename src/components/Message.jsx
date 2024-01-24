@@ -1,11 +1,11 @@
 import axios from "axios";
 import moment from "moment";
 import "../style/message.css";
-import io from "socket.io-client";
+import Pusher from "pusher-js";
 import { useEffect, useState } from "react";
+import {Cridential} from "../../utils/dotenv";
 import { useNavigate } from "react-router-dom";
-
-const socketClient = io.connect("http://localhost:8000")
+import { Cridential } from "../../utils/dotenv";
 
 const Message = ({user,setPages}) => {
     let key;
@@ -18,23 +18,28 @@ const Message = ({user,setPages}) => {
     if (params) {
         key = params.split('%');
     }
+    const pusher = new Pusher(Cridential.API_KEY, {
+        cluster: Cridential.CLUSTER
+    });
+    
+    const channel = pusher.subscribe('voteChat'); 
 
     useEffect(() => {
-        socketClient.on("pushChat",data => {
-            let index = data[0].users.findIndex(object => {
+        channel.bind("pushChat",data => {
+            let index = data.result[0].users.findIndex(object => {
                 return object._id == user._id
             })
-            if (data && data[0].users[index]._id == user._id) {
+            if (data && data.result[0].users[index]._id == user._id) {
                 let array = listChat
                 const index = array.findIndex(object => {
-                    return object.room_key == data[0].room_key;
+                    return object.room_key == data.result[0].room_key;
                 })
                 array.splice(index, 1)
                 array.push(data[0])
                 array.reverse()
                 setListChat(array)
                 if (active) {
-                    if (data[0].users[index]._id == user._id) {
+                    if (data.result[0].users[index]._id == user._id) {
                         setActive(false)
                         setActive(data[0])
                     }
@@ -43,11 +48,11 @@ const Message = ({user,setPages}) => {
                 data = undefined
             }
         })
-    },[socketClient])
+    },[channel])
 
     useEffect(() => {
         async function getChatList () {
-            let data = await axios.post("http://localhost:8000/api/get_chat_list",{id: user._id})
+            let data = await axios.post(`${Cridential.BASE_URL}/api/get_chat_list`,{id: user._id})
             if (data.data.code == 200 && data.data.status == "OK") {
                 setListChat(data.data.data);
             }
@@ -58,7 +63,7 @@ const Message = ({user,setPages}) => {
     useEffect(() => {
         if (key) {
             async function add_room () {
-                let  add = await axios.post("http://localhost:8000/api/add_chat_room",{key: key})
+                let  add = await axios.post(`${Cridential.BASE_URL}/api/add_chat_room`,{key: key})
                 if(add.data.code == 200 && add.data.status == "OK"){
                     setActive(add.data.data[0])
                 }
@@ -88,7 +93,7 @@ const Message = ({user,setPages}) => {
 
     async function handleHideActve () {
         if (active.messages.length < 1) {
-           let del = await axios.post("http://localhost:8000/api/delete_room",{key: active.room_key})
+           let del = await axios.post(`${Cridential.BASE_URL}/api/delete_room`,{key: active.room_key})
            if (del.data.code == 200 && del.data.status == "OK") {
                 let array = listChat
                 const index = array.findIndex(object => {
@@ -132,7 +137,7 @@ const Message = ({user,setPages}) => {
             created_at: moment().format(),
             update_at: moment().format()
         }
-        let addChat = await axios.post("http://localhost:8000/api/push_chat",{data})
+        let addChat = await axios.post(`${Cridential.BASE_URL}/api/push_chat`,{data})
         if (addChat.data.code == 200 && addChat.data.status == "OK") {
             let array = listChat
             const index = array.findIndex(object => {

@@ -1,7 +1,8 @@
 import "../style/add.css";
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"
+import {Cridential} from "../../utils/dotenv";
+import { useNavigate } from "react-router-dom";
 
 const AddQuest = ({user,setPages}) => {
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ const AddQuest = ({user,setPages}) => {
         }
     }
     const handleUnggahVote = async () => {
-        const add = await axios.post("http://localhost:8000/api/createQuest",{author_id: user._id,username: user.username,quest: quest,answer: answer})
+        const add = await axios.post(`${Cridential.BASE_URL}/api/createQuest`,{author_id: user._id,username: user.username,quest: quest,answer: answer})
         if (add.data.code == 200 && add.data.status =="OK") {
             setPages("Dashboard")
             navigate("/dashboard")

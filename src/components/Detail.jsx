@@ -2,6 +2,7 @@ import axios from "axios";
 import moment from "moment";
 import "../style/detail.css";
 import { useEffect, useState } from "react";
+import {Cridential} from "../../utils/dotenv";
 import { useLocation,useNavigate } from "react-router-dom";
 
 const Detail = ({user,setPages,userCount}) => {
@@ -23,7 +24,7 @@ const Detail = ({user,setPages,userCount}) => {
                 setData(ste)
             }
         })
-        axios.post("http://localhost:8000/api/get_ans_by_params",{params})
+        axios.post(`${Cridential.BASE_URL}/api/get_ans_by_params`,{params})
         .then((result) => {
             setAnswer(result.data.data);
         })
@@ -45,7 +46,7 @@ const Detail = ({user,setPages,userCount}) => {
             author_id: data.author_id,
             username: user.username,
         }
-        let add = await axios.post("http://localhost:8000/api/add_answer",{req})
+        let add = await axios.post(`${Cridential.BASE_URL}/api/add_answer`,{req})
         if (add.data.code == 200 && add.data.status == "OK") {
             setIdAnsw("");
             setChoose("");

@@ -2,6 +2,7 @@ import axios from "axios";
 import "../style/login.css";
 import Cookies from "js-cookie";
 import { useState } from "react";
+import {Cridential} from "../../utils/dotenv";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({logIn,setAlert}) => {
@@ -11,7 +12,7 @@ const Login = ({logIn,setAlert}) => {
         password: ""
     })
     const handleLogin = async () => {
-        const login = await axios.post("http://localhost:8000/api/login",formLogin)
+        const login = await axios.post(`${Cridential.BASE_URL}/api/login`,formLogin)
         if (login.data.code == 200 && login.data.status == "OK") {
             setFormLogin(prevState => ({
                 ...prevState,

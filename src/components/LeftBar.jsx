@@ -1,6 +1,7 @@
 import axios from "axios";
 import "../style/leftBar.css";
 import { useEffect, useState } from "react";
+import {Cridential} from "../../utils/dotenv";
 import { useNavigate } from "react-router-dom";
 
 const LeftBar = ({user,setPages,logOut}) => {
@@ -12,7 +13,7 @@ const LeftBar = ({user,setPages,logOut}) => {
 
     useEffect(() => {
         async function getNotif() {
-            let notif = await axios.post("http://localhost:8000/api/getNewNotif", {user_id: user._id})
+            let notif = await axios.post(`${Cridential.BASE_URL}/api/getNewNotif`, {user_id: user._id})
             let reverse = notif.data.data.reverse();
             setNotifies(reverse)
         }

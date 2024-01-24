@@ -1,11 +1,10 @@
 import axios from "axios";
 import moment from "moment";
 import "../style/rightbar.css";
-import io from "socket.io-client";
+import Pusher from "pusher-js";
 import { useEffect, useState } from "react";
+import { Cridential } from "../../utils/dotenv";
 import { useNavigate } from "react-router-dom";
-
-const socketClient = io.connect("http://localhost:8000");
 
 const RightBar = ({user,setPages}) => {
 
@@ -14,31 +13,37 @@ const RightBar = ({user,setPages}) => {
     const [notifies,setNotifies] = useState([])
     const [topTopics,setTopTopics] = useState([])
 
+    const pusher = new Pusher(Cridential.API_KEY, {
+        cluster: Cridential.CLUSTER
+    });
+    
+    const channel = pusher.subscribe('voteNotif');
+
     useEffect(() => {
-        socketClient.on("pushNotif", (data) => {
-            if (data && data.to == user._id) { 
+        channel.bind("pushNotif", (data) => {
+            if (data.notif && data.notif[0].to == user._id) { 
                 if (notifies.length) {
                     let array = []
-                    array.push(data)
+                    array.push(data.notif[0])
                     let baru = array.concat(notifies)
                     setNotifies(baru)
                 }else {
-                    setNotifies(data)
+                    setNotifies(data.notif[0])
                 }   
             }else {
                 data = undefined;
             }
         })
-    },[socketClient])
+    },[channel])
 
     useEffect(() => {
         async function getNotif() {
-            let notif = await axios.post("http://localhost:8000/api/getNewNotif", {user_id: user._id})
+            let notif = await axios.post(`${Cridential.BASE_URL}/api/getNewNotif`, {user_id: user._id})
             let reverse = notif.data.data.reverse();
             setNotifies(reverse)
         }
         async function getTop() {
-            let top = await axios.post("http://localhost:8000/api/get_top_topic");
+            let top = await axios.post(`${Cridential.BASE_URL}/api/get_top_topic`);
             let data = top.data.quests
             for (let i = 0; i < data.length; i++) {
                let count = 0
@@ -62,7 +67,7 @@ const RightBar = ({user,setPages}) => {
         setNotifies(array);
         setPages("Pemberitahuan");
         if (notif.context == "response") {
-            let data = await axios.post("http://localhost:8000/api/get_quest_by_id",{id: notif.quest_id})
+            let data = await axios.post(`${Cridential.BASE_URL}/api/get_quest_by_id`,{id: notif.quest_id})
             navigate(`/notifies?notif_id=${notif._id}`,{
                 state: {
                     notif: notif,

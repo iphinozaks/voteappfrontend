@@ -1,9 +1,11 @@
 import axios from "axios";
 import moment from "moment";
 import "../style/notif.css";
-import io from "socket.io-client";
+import Pusher from "pusher-js";
 import Option from "../components/Option";
 import { useEffect, useState } from "react";
+import {Cridential} from "../../utils/dotenv";
+import { Cridential } from "../../utils/dotenv";
 import { useLocation,useNavigate } from "react-router-dom";
 
 const Notif = ({user,setPages}) => {
@@ -19,10 +21,14 @@ const Notif = ({user,setPages}) => {
     const [isOption,setIsOption] = useState(false)
     const [filters,setDataFilters] = useState(false);
     
-    const socketClient = io.connect("http://localhost:8000");
+    const pusher = new Pusher(Cridential.API_KEY, {
+        cluster: Cridential.CLUSTER
+    });
+    
+    const channel = pusher.subscribe('voteNotif'); 
 
     useEffect(() => {
-        socketClient.on("pushNotif", (data) => {
+        channel.bind("pushNotif", (data) => {
             if (data && data.to == user._id) { 
                 if (notifies.length) {
                     let array = []
@@ -36,11 +42,11 @@ const Notif = ({user,setPages}) => {
                 data = undefined;
             }
         })
-    },[socketClient])
+    },[channel])
 
     useEffect(() => {
         async function getNotif() {
-            let notif = await axios.post("http://localhost:8000/api/getNotif", {user_id: user._id})
+            let notif = await axios.post(`${Cridential.BASE_URL}/api/getNotif`, {user_id: user._id})
             let reverse = notif.data.data.reverse();
             setNotifies(reverse);
         }
@@ -49,7 +55,7 @@ const Notif = ({user,setPages}) => {
 
     useEffect(() => {
         async function update () {
-            let update = await axios.post("http://localhost:8000/api/update_notif",{data: state})
+            let update = await axios.post(`${Cridential.BASE_URL}/api/update_notif`,{data: state})
             if (update.data.code == 200 && update.data.status == "OK") {
                 let notifi = []
                 notifies.map((notif) => {
@@ -68,7 +74,7 @@ const Notif = ({user,setPages}) => {
     async function handleSowNotif (notif) {
         setPages("Pemberitahuan");
         if (notif.context == "response") {
-            let data = await axios.post("http://localhost:8000/api/get_quest_by_id",{id: notif.quest_id})
+            let data = await axios.post(`${Cridential.BASE_URL}/api/get_quest_by_id`,{id: notif.quest_id})
             navigate(`/notifies?notif_id=${notif._id}`,{
                 state: {
                     notif: notif,
@@ -165,7 +171,7 @@ const Notif = ({user,setPages}) => {
 
     async function handleDelete () {
         if (del.length > 0) {
-            let update = await axios.post("http://localhost:8000/api/delete_notif",{data: del})
+            let update = await axios.post(`${Cridential.BASE_URL}/api/delete_notif`,{data: del})
             if (update.data.code == 200 && update.data.status == "OK") {
                 del.map((d) => {
                     var array = notifies;

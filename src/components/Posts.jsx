@@ -2,11 +2,10 @@ import axios from "axios";
 import "../style/posts.css";
 import moment from "moment";
 import Option from "./Option";
-import io from "socket.io-client";
+import Pusher from "pusher-js";
 import { useEffect, useState } from "react";
+import { Cridential } from "../../utils/dotenv";
 import { useNavigate } from "react-router-dom";
-
-const socketClient = io.connect("http://localhost:8000")
 
 const Posts = ({user,setPages,userCount}) => {
     const navigate = useNavigate();
@@ -15,22 +14,28 @@ const Posts = ({user,setPages,userCount}) => {
     const [authorId,setAuthorId] = useState(false);
     const [isOption,setIsOption] = useState(false);
     const [currentPages,setCurrentPages] = useState(0);
+
+    const pusher = new Pusher(Cridential.API_KEY, {
+        cluster: Cridential.CLUSTER
+    });
     
-    useEffect(() => {
-        socketClient.on("pushAnswer", data => {
-            var array = posts
-            let indexQuest = array.findIndex(object => {
-                return object._id == data[0].quest_id
-            })
-            let indexAns = array[indexQuest].answers.findIndex(object => {
-                return object.ans_id == data[0].ans_id
-            })
-            array.map((arr) => {
-                arr.answers[indexAns].ans_count = arr.answers[indexAns].ans_count + 1
-            })
-            setPosts(array)
-        })
-    },[socketClient])
+    const channel = pusher.subscribe('voteAnswer');    
+    
+    useEffect(() => {  
+        channel.bind('pushAnswer', function(data) {
+           var array = posts
+           let indexQuest = array.findIndex(object => {
+            return object._id == data.result[0].quest_id
+           })
+           let indexAns = array[indexQuest].answers.findIndex(object => {
+               return object.ans_id == data.result[0].ans_id
+           })
+           array.map((arr) => {
+               arr.answers[indexAns].ans_count = arr.answers[indexAns].ans_count + 1
+           })
+           setPosts(array)
+        });
+    },[channel])
     
     async function handleScroll (e) {
         const target = e.target;
@@ -48,7 +53,7 @@ const Posts = ({user,setPages,userCount}) => {
             postComponent[0].style.height = "55.5vh";
         }
         if (isScrollToBottom) {
-            let paginate = await axios.post("http://localhost:8000/api/get_all_Questions",{currentPages});
+            let paginate = await axios.post(`${Cridential.BASE_URL}/api/get_all_Questions`,{currentPages});
             if (paginate.data.data) {
               setCurrentPages(paginate.data.data.pages)
               let array = posts
@@ -60,7 +65,7 @@ const Posts = ({user,setPages,userCount}) => {
 
     useEffect(() => {
         async function fetchData() {
-            let posts = await axios.post("http://localhost:8000/api/get_all_Questions");
+            let posts = await axios.post(`${Cridential.BASE_URL}/api/get_all_Questions`);
             if (posts.data.data.quest) {
                 setCurrentPages(posts.data.data.pages)
                 let reverse = posts.data.data.quest.reverse();

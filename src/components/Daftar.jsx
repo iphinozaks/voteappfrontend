@@ -1,6 +1,7 @@
 import axios from "axios";
 import "../style/daftar.css";
 import { useState } from "react";
+import {Cridential} from "../../utils/dotenv";
 
 const Daftar = ({setIsLogIn,setAlert}) => {
     const [formData,setFormData] = useState({
@@ -10,7 +11,7 @@ const Daftar = ({setIsLogIn,setAlert}) => {
         confirm: ""
     });
     const handleDaftar = async () => {
-        const daftar = await axios.post("http://localhost:8000/api/daftar",formData)
+        const daftar = await axios.post(`${Cridential.BASE_URL}/api/daftar`,formData)
         if (daftar.data.code == 200 && daftar.data.status == "OK") {
             setFormData(prevState => ({
                 ...prevState,
